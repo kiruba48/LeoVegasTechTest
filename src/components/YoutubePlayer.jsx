@@ -1,6 +1,6 @@
 import ReactPlayer from 'react-player'
 
-const YoutubePlayer = ({ videoKey }) => (<ReactPlayer 
+const YouTubePlayer = ({ videoKey }) => (<ReactPlayer 
   className="video-player" 
   url={`https://www.youtube.com/watch?v=${videoKey}`} 
   controls={true}
@@ -8,4 +8,4 @@ const YoutubePlayer = ({ videoKey }) => (<ReactPlayer
   data-testid="youtube-player"
 />);
 
-export default YoutubePlayer;
+export default YouTubePlayer;

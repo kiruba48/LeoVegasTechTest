@@ -8,7 +8,7 @@ import Header from './components/Header'
 import Movies from './components/Movies'
 import Starred from './components/Starred'
 import WatchLater from './components/WatchLater'
-import YouTubePlayer from './components/YoutubePlayer'
+import YouTubePlayer from './components/YouTubePlayer'
 import './app.scss'
 
 const App = () => {
