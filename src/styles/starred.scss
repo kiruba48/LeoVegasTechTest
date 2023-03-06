@@ -1,4 +1,14 @@
 .starred {
+    // Implemented grid display for the movies
+    .row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(5rem, 15rem));
+        grid-gap: 1.5rem;
+
+        @media (max-width: 720px) {
+            margin: 3rem;        
+        }
+    }
   
     footer {
         margin-top: 50px;

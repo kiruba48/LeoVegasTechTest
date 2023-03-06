@@ -12,6 +12,7 @@ const Movie = ({ movie, viewTrailer, closeCard }) => {
 
     const dispatch = useDispatch()
 
+    // Redundant handler function
     const myClickHandler = (e) => {
         if (!e) var e = window.event
         e.cancelBubble = true
@@ -60,9 +61,9 @@ const Movie = ({ movie, viewTrailer, closeCard }) => {
             </div>
             <h6 className="title mobile-card">{movie.title}</h6>
             <h6 className="title">{movie.title}</h6>
-            <button type="button" className="close" onClick={(e) => myClickHandler(e)} aria-label="Close">
+            {/* <button type="button" className="close" onClick={(e) => myClickHandler(e)} aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-            </button>
+            </button> */}
         </div>       
     )
 }

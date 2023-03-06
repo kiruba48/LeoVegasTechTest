@@ -1,0 +1,29 @@
+.modal {
+    position: relative;
+
+    &-backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+
+        .modal-content {
+            justify-content: center;
+            background-color: transparent;
+        }
+
+        .btn-close {
+            position: absolute;
+            top: 5%;
+            right: 25%;
+            background-color: white;
+            font-size: 1rem;
+            z-index: 1000;
+        }
+    }
+
+    &--show {
+        display: block;
+    }
+}
+
+
+

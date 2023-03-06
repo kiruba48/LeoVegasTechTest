@@ -145,47 +145,89 @@
             font-size: 25px;
         }        
     }
-    button {
-        display: block;
-        width: 90%;
-        height: 26px;
-        margin: 8px auto;
-        font-size: 0.6rem;
-        text-align: center;
+    // button {
+    //     display: block;
+    //     width: 90%;
+    //     height: 26px;
+    //     margin: 8px auto;
+    //     font-size: 2rem;
+    //     text-align: center;
 
-        @media (max-width: 720px) {
-            height: 20px;
-            padding: 2px 2px;
-            font-size: 0.6rem;
-        }
+    //     @media (max-width: 720px) {
+    //         height: 20px;
+    //         padding: 2px 2px;
+    //         font-size: 0.6rem;
+    //     }
 
-        @media (max-width: 480px) {
-            margin: 15px auto;
-            height: 35px;
-            font-size: 1rem;            
-        }
+    //     @media (max-width: 480px) {
+    //         margin: 15px auto;
+    //         height: 35px;
+    //         font-size: 1rem;            
+    //     }
 
-        &.btn-watch-later {
+    //     &.btn-watch-later {
         
-            &.blue {
-                color: #fff;
-                background-color: #1CB5E0;
-                border: #1CB5E0;
-            }
+    //         &.blue {
+    //             color: #fff;
+    //             background-color: #1CB5E0;
+    //             border: #1CB5E0;
+    //         }
 
-            &:hover {
-                color: #fff;
-                background: #1CB5E0;
-                border-color: #1CB5E0;
-            }
-        }
+    //         &:hover {
+    //             color: #fff;
+    //             background: #1CB5E0;
+    //             border-color: #1CB5E0;
+    //         }
+    //     }
 
-        &.btn-dark:hover {
-            color: #fff;
-            background: #1CB5E0;
-            border-color: #1CB5E0;
-        }
+    //     &.btn-dark:hover {
+    //         color: #fff;
+    //         background: #1CB5E0;
+    //         border-color: #1CB5E0;
+    //     }
+    // }
+}
+
+.btn {
+    display: block;
+    width: 90%;
+    height: 26px;
+    margin: 8px auto;
+    font-size: 0.6rem;
+    text-align: center;
+
+    @media (max-width: 720px) {
+        height: 20px;
+        padding: 2px 2px;
+        font-size: 0.6rem;
     }
+
+    @media (max-width: 480px) {
+        margin: 15px auto;
+        height: 35px;
+        font-size: 1rem;            
+    }
+}
+
+.btn-watch-later {
+
+    &.blue {
+        color: #fff;
+        background-color: #1CB5E0;
+        border: #1CB5E0;
+    }
+
+    &:hover {
+        color: #fff;
+        background: #1CB5E0;
+        border-color: #1CB5E0;
+    }
+}
+
+.btn-dark:hover {
+    color: #fff;
+    background: #1CB5E0;
+    border-color: #1CB5E0;
 }
 
 .card {
