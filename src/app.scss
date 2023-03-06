@@ -7,6 +7,8 @@
 :root, 
 .App {
   text-align: center;
+  // corrected redundant empty space at the end of the container
+  height: 100%;
 
   @keyframes anvil {
     0% {

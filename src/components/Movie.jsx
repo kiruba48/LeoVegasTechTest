@@ -20,7 +20,6 @@ const Movie = ({ movie, viewTrailer, closeCard }) => {
     }
 
     return (
-        <div className="wrapper col-3 col-sm-4 col-md-3 col-lg-3 col-xl-2">
         <div className="card" onClick={(e) => e.currentTarget.classList.add('opened')} >
             <div className="card-body text-center">
                 <div className="overlay" />
@@ -64,8 +63,7 @@ const Movie = ({ movie, viewTrailer, closeCard }) => {
             <button type="button" className="close" onClick={(e) => myClickHandler(e)} aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-        </div>
-    </div>        
+        </div>       
     )
 }
 
