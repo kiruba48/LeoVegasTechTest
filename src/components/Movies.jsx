@@ -1,38 +1,64 @@
+import { useEffect, useCallback, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 import Movie from './Movie'
 import '../styles/movies.scss'
-import { useEffect, useCallback } from 'react';
-
-import { ENDPOINT_SEARCH, ENDPOINT_DISCOVER, ENDPOINT, API_KEY } from '../constants';
+import { ENDPOINT_DISCOVER } from '../constants';
 import { fetchMovies } from '../data/moviesSlice';
 
 const Movies = ({ viewTrailer, closeCard }) => {
 
     const movies = useSelector((state) => state.movies);
-    const { movies: allMovies } = movies;
-    console.log(movies);
-    console.log(allMovies);
+    const { movies: allMovies, fetchStatus } = movies;
     const dispatch = useDispatch();
 
-    // const getMovies = useCallback(() => {
-    //     dispatch(fetchMovies(ENDPOINT_DISCOVER));
-    //   }, [dispatch])
+    const [pageNumber, setPageNumber] = useState(1);
 
-    const loadMoreMovies = () => {
+    const observer = useRef(null);
+    const lastMovieCard = useCallback((card) => {
+        if(fetchStatus === 'loading') return;
+        if(observer.current) observer.current.disconnect();
+        observer.current = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) {
+                setPageNumber(prevPageNumber => prevPageNumber + 1);
+            }
+        }, {
+            threshold: 0,
+            root:null,
+          });
+        if(card) observer.current.observe(card);
+    }, [fetchStatus])
 
-    }
 
     useEffect(() => {
-        console.log('from movies useEffect');
-        dispatch(fetchMovies(ENDPOINT_DISCOVER));
-    }, [dispatch])
+        dispatch(fetchMovies({
+            apiUrl: ENDPOINT_DISCOVER,
+            pageNumber,
+        }));
+    }, [dispatch, pageNumber])
 
 
     return (
         <div data-testid="movies" className='section__movies'>
-
-            {allMovies.map((movie) => {
+            {
+                fetchStatus === 'loading' ? (
+                    <div style={{padding: "30px"}}>
+                        <h6>Loading...</h6>
+                    </div>
+                ) : null
+            }
+            {allMovies.map((movie, index) => {
+                if(allMovies.length === index + 1) {
+                    return (
+                        <Movie 
+                            movie={movie} 
+                            key={movie.id}
+                            viewTrailer={viewTrailer}
+                            closeCard={closeCard}
+                            reference={lastMovieCard}
+                        />
+                )
+                }
                 return (
                     <Movie 
                         movie={movie} 

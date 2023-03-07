@@ -3,7 +3,7 @@ import starredSlice from '../data/starredSlice'
 import watchLaterSlice from '../data/watchLaterSlice'
 import placeholder from '../assets/not-found-500X750.jpeg'
 
-const Movie = ({ movie, viewTrailer, closeCard }) => {
+const Movie = ({ movie, viewTrailer, closeCard, reference }) => {
 
     const state = useSelector((state) => state)
     const { starred, watchLater } = state
@@ -21,7 +21,7 @@ const Movie = ({ movie, viewTrailer, closeCard }) => {
     // }
 
     return (
-        <div className="card" onClick={(e) => e.currentTarget.classList.add('opened')} >
+        <div className="card" onClick={(e) => e.currentTarget.classList.add('opened')} ref={reference} >
             <div className="card-body text-center">
                 <div className="overlay" />
                 <div className="info_panel">

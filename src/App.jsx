@@ -14,16 +14,15 @@ import './app.scss'
 
 const App = () => {
 
-  // const state = useSelector((state) => state)
+  const { fetchStatus } = useSelector((state) => state.movies);
   // const { movies } = state  
-  // const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [searchParams, setSearchParams] = useSearchParams()
-  const searchQuery = searchParams.get('search')
+  const dispatch = useDispatch()
+  // const navigate = useNavigate()
+  // const [searchParams, setSearchParams] = useSearchParams()
+  // const searchQuery = searchParams.get('search')
   const [videoKey, setVideoKey] = useState()
   const [isOpen, setOpen] = useState(false)
-  const [isLoading, setLoading] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
+  // const [pageNumber, setPageNumber] = useState(1);
   
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
@@ -76,12 +75,10 @@ const App = () => {
       const trailer = videoData.videos.results.find(vid => vid.type === 'Trailer')
       setVideoKey(trailer ? trailer.key : videoData.videos.results[0].key);
       openModal();
-      setLoading(false);
     }
   }
 
   const viewTrailer = async (movie) => {
-    setLoading(true);
     const movieToPlay = await getMovie(movie.id);
     await getTrailer(movieToPlay);
   }
@@ -94,6 +91,7 @@ const App = () => {
   return (
     <div className="App">
       {/* <Header searchMovies={searchMovies} searchParams={searchParams} setSearchParams={setSearchParams} /> */}
+      <Header />
 
       <div className="container">
         <Modal
@@ -101,15 +99,15 @@ const App = () => {
             show={isOpen}
             closeModal={closeModal}
             closeVideo={closeVideo}
-            loading={isLoading}
+            status={fetchStatus}
       />
 
         <Routes>
           <Route path="/" element={<Movies viewTrailer={viewTrailer} closeCard={closeCard} />} />
           {/* <Route path="/" element={<Movies movies={movies} viewTrailer={viewTrailer} closeCard={closeCard} />} /> */}
-          {/* <Route path="/starred" element={<Starred viewTrailer={viewTrailer} />} />
+          <Route path="/starred" element={<Starred viewTrailer={viewTrailer} />} />
           <Route path="/watch-later" element={<WatchLater viewTrailer={viewTrailer} />} />
-          <Route path="*" element={<h1 className="not-found">Page Not Found</h1>} /> */}
+          <Route path="*" element={<h1 className="not-found">Page Not Found</h1>} />
         </Routes>
       </div>
     </div>

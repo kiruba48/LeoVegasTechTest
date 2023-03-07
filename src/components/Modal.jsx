@@ -3,7 +3,7 @@ import '../styles/modal.scss';
 
 
 
-const Modal = ({show, videoKey, closeModal, closeVideo, loading}) => {
+const Modal = ({show, videoKey, closeModal, closeVideo, status}) => {
 
     const handleClose = () => {
         closeModal();
@@ -15,7 +15,7 @@ const Modal = ({show, videoKey, closeModal, closeVideo, loading}) => {
             <div className="modal-backdrop">
                     <button className="btn-close" onClick={handleClose}></button>
                     {
-                        loading ? (
+                        status === 'loading' ? (
                             <div style={{padding: "30px"}}>
                                 <h6>no trailer available. Try another movie</h6>
                             </div>

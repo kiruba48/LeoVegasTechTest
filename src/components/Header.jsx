@@ -1,11 +1,40 @@
-import { Link, NavLink } from "react-router-dom"
-import { useSelector } from 'react-redux';
+import { Link, NavLink, createSearchParams, useSearchParams, useNavigate } from "react-router-dom"
+import { useSelector, useDispatch } from 'react-redux';
+import { ENDPOINT_SEARCH, ENDPOINT_DISCOVER, ENDPOINT, API_KEY } from '../constants';
+import { fetchMovies } from '../data/moviesSlice';
+
 
 import '../styles/header.scss'
 
-const Header = ({ searchMovies }) => {
+const Header = () => {
   
   const { starredMovies } = useSelector((state) => state.starred);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('search');
+
+
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const getSearchResults = (query) => {
+    if (query !== '') {
+      // dispatch(fetchMovies(`${ENDPOINT_SEARCH}&query=`+query))
+      dispatch(fetchMovies(ENDPOINT_SEARCH, query));
+      
+      setSearchParams(createSearchParams({ search: query }))
+    } else {
+      dispatch(fetchMovies(ENDPOINT_DISCOVER))
+      setSearchParams()
+    }
+  }
+
+  const searchMovies = (query) => {
+    navigate('/');
+    getSearchResults(query);
+  }
+
 
   return (
     <header>
@@ -30,7 +59,8 @@ const Header = ({ searchMovies }) => {
       </nav>
 
       <div className="input-group rounded">
-        <Link to="/" onClick={(e) => searchMovies('')} className="search-link" >
+        {/* <Link to="/" onClick={(e) => searchMovies('')} className="search-link" > */}
+        <Link to="/" className="search-link" >
           <input type="search" data-testid="search-movies"
             onKeyUp={(e) => searchMovies(e.target.value)} 
             className="form-control rounded" 

@@ -8,7 +8,6 @@ export const useIntersectionObserver = () => {
 
     function executeJob(entries){
       entries.forEach((entry) => {
-        console.log('visible');
         if(entry.isIntersecting){
           setConverge(true);
         }
