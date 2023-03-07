@@ -13,12 +13,12 @@ const Movie = ({ movie, viewTrailer, closeCard }) => {
     const dispatch = useDispatch()
 
     // Redundant handler function
-    const myClickHandler = (e) => {
-        if (!e) var e = window.event
-        e.cancelBubble = true
-        if (e.stopPropagation) e.stopPropagation()
-        e.target.parentElement.parentElement.classList.remove('opened')
-    }
+    // const myClickHandler = (e) => {
+    //     if (!e) var e = window.event
+    //     e.cancelBubble = true
+    //     if (e.stopPropagation) e.stopPropagation()
+    //     e.target.parentElement.parentElement.classList.remove('opened')
+    // }
 
     return (
         <div className="card" onClick={(e) => e.currentTarget.classList.add('opened')} >
