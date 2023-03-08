@@ -46,7 +46,7 @@ const App = () => {
 
   const viewTrailer = async (movie) => {
     const movieToPlay = await getMovie(movie.id);
-    await getTrailer(movieToPlay);
+    getTrailer(movieToPlay);
   }
 
 

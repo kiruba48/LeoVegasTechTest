@@ -24,3 +24,17 @@ You may also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+
+## TASKS
+### Implementing Grid Display for Movies 
+
+![Grid Display Screenshot](img/GridDisply-Screenshot.png)
+
+### Implementing Modal Screen for Trailer 
+
+![Modal Screen](img/Modal-Screenshot.png)
+
+### Implementing Infinte Scroll functionality for movies 
+
+![Infinite Scroll](img/InfiniteScroll-screenshot.png)

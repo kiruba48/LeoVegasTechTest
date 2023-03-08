@@ -3,7 +3,7 @@ import starredSlice from '../data/starredSlice';
 import watchLaterSlice from '../data/watchLaterSlice';
 import placeholder from '../assets/not-found-500X750.jpeg';
 
-const Movie = ({ movie, viewTrailer, closeCard, reference }) => {
+const Movie = ({ movie, viewTrailer, reference }) => {
 
     const state = useSelector((state) => state);
     const { starred, watchLater } = state;
@@ -11,14 +11,6 @@ const Movie = ({ movie, viewTrailer, closeCard, reference }) => {
     const { addToWatchLater, removeFromWatchLater } = watchLaterSlice.actions;
 
     const dispatch = useDispatch();
-
-    // Redundant handler function
-    // const myClickHandler = (e) => {
-    //     if (!e) var e = window.event
-    //     e.cancelBubble = true
-    //     if (e.stopPropagation) e.stopPropagation()
-    //     e.target.parentElement.parentElement.classList.remove('opened')
-    // }
 
     return (
         <div className="card" onClick={(e) => e.currentTarget.classList.add('opened')} ref={reference} >
@@ -61,9 +53,6 @@ const Movie = ({ movie, viewTrailer, closeCard, reference }) => {
             </div>
             <h6 className="title mobile-card">{movie.title}</h6>
             <h6 className="title">{movie.title}</h6>
-            {/* <button type="button" className="close" onClick={(e) => myClickHandler(e)} aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button> */}
         </div>       
     )
 }
