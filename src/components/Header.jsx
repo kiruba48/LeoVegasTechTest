@@ -1,6 +1,6 @@
 import { Link, NavLink, createSearchParams, useSearchParams, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux';
-import { ENDPOINT_SEARCH, ENDPOINT_DISCOVER, ENDPOINT, API_KEY } from '../constants';
+import { ENDPOINT_SEARCH, ENDPOINT_DISCOVER } from '../constants';
 import { fetchMovies } from '../data/moviesSlice';
 
 

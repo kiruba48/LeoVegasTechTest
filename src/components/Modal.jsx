@@ -1,5 +1,6 @@
 import YouTubePlayer from './YouTubePlayer';
 import '../styles/modal.scss';
+import '../styles/utils.scss';
 
 
 
@@ -16,7 +17,7 @@ const Modal = ({show, videoKey, closeModal, closeVideo, status}) => {
                     <button className="btn-close" onClick={handleClose}></button>
                     {
                         status === 'loading' ? (
-                            <div style={{padding: "30px"}}>
+                            <div className='feedback__text feedback__text--loading'>
                                 <h6>Loading...</h6>
                             </div>
                         ) : null

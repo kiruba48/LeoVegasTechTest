@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Movie from './Movie';
 import '../styles/movies.scss';
+import '../styles/utils.scss';
 import { ENDPOINT_DISCOVER } from '../constants';
 import { fetchMovies } from '../data/moviesSlice';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
@@ -42,14 +43,14 @@ const Movies = ({ viewTrailer, closeCard }) => {
         <div data-testid="movies" className='section__movies'>
             {
                 fetchStatus === 'loading' ? (
-                    <div style={{padding: "30px"}}>
+                    <div className='feedback__text feedback__text--loading'>
                         <h6>Loading...</h6>
                     </div>
                 ) : null
             }
             {
                 fetchStatus === 'error' ? (
-                    <div style={{padding: "30px"}}>
+                    <div className='feedback__text feedback__text--error'>
                         <h6>Error Loading Movies</h6>
                     </div>
                 ) : null
