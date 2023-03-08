@@ -52,7 +52,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* <Header searchMovies={searchMovies} searchParams={searchParams} setSearchParams={setSearchParams} /> */}
       <Header />
 
       <div className="container">
@@ -66,7 +65,6 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<Movies viewTrailer={viewTrailer} closeCard={closeCard} />} />
-          {/* <Route path="/" element={<Movies movies={movies} viewTrailer={viewTrailer} closeCard={closeCard} />} /> */}
           <Route path="/starred" element={<Starred viewTrailer={viewTrailer} />} />
           <Route path="/watch-later" element={<WatchLater viewTrailer={viewTrailer} />} />
           <Route path="*" element={<h1 className="not-found">Page Not Found</h1>} />

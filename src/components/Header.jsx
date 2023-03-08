@@ -1,10 +1,10 @@
-import { Link, NavLink, createSearchParams, useSearchParams, useNavigate } from "react-router-dom"
+import { Link, NavLink, createSearchParams, useSearchParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { ENDPOINT_SEARCH, ENDPOINT_DISCOVER } from '../constants';
 import { fetchMovies } from '../data/moviesSlice';
 
 
-import '../styles/header.scss'
+import '../styles/header.scss';
 
 const Header = () => {
   
@@ -20,7 +20,6 @@ const Header = () => {
 
   const getSearchResults = (query) => {
     if (query !== '') {
-      // dispatch(fetchMovies(`${ENDPOINT_SEARCH}&query=`+query))
       dispatch(fetchMovies(ENDPOINT_SEARCH, query));
       
       setSearchParams(createSearchParams({ search: query }))
@@ -59,7 +58,6 @@ const Header = () => {
       </nav>
 
       <div className="input-group rounded">
-        {/* <Link to="/" onClick={(e) => searchMovies('')} className="search-link" > */}
         <Link to="/" className="search-link" >
           <input type="search" data-testid="search-movies"
             onKeyUp={(e) => searchMovies(e.target.value)} 
@@ -74,4 +72,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;

@@ -1,4 +1,4 @@
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
 
 const YouTubePlayer = ({ videoKey }) => (<ReactPlayer 
   className="video-player" 

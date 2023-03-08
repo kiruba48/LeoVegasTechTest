@@ -1,15 +1,15 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-import starredSlice from '../data/starredSlice'
-import Movie from './Movie'
-import '../styles/starred.scss'
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import starredSlice from '../data/starredSlice';
+import Movie from './Movie';
+import '../styles/starred.scss';
 
 const Starred = ({viewTrailer}) => {
 
-    const state = useSelector((state) => state)
-    const { starred } = state
-    const { clearAllStarred } = starredSlice.actions
-    const dispatch = useDispatch()
+    const state = useSelector((state) => state);
+    const { starred } = state;
+    const { clearAllStarred } = starredSlice.actions;
+    const dispatch = useDispatch();
 
   return (
     <div className="starred" data-testid="starred">
@@ -39,4 +39,4 @@ const Starred = ({viewTrailer}) => {
   )
 }
 
-export default Starred
+export default Starred;
