@@ -35,6 +35,6 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ![Modal Screen](img/Modal-Screenshot.png)
 
-### Implementing Infinte Scroll functionality for movies 
+### Implementing Infinite Scroll functionality for movies 
 
-![Infinite Scroll](img/InfiniteScroll-screenshot.png)
+![Infinite Scroll](img/InfiniteScroll-Screenshot.png)
