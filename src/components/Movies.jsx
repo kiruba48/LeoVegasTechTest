@@ -1,10 +1,11 @@
 import { useEffect, useCallback, useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 
-import Movie from './Movie'
-import '../styles/movies.scss'
+import Movie from './Movie';
+import '../styles/movies.scss';
 import { ENDPOINT_DISCOVER } from '../constants';
 import { fetchMovies } from '../data/moviesSlice';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const Movies = ({ viewTrailer, closeCard }) => {
 
@@ -13,21 +14,13 @@ const Movies = ({ viewTrailer, closeCard }) => {
     const dispatch = useDispatch();
 
     const [pageNumber, setPageNumber] = useState(1);
+    const { createInfiniteScroll, converge, setConverge } = useIntersectionObserver();
 
     const observer = useRef(null);
+
     const lastMovieCard = useCallback((card) => {
-        if(fetchStatus === 'loading') return;
-        if(observer.current) observer.current.disconnect();
-        observer.current = new IntersectionObserver((entries) => {
-            if(entries[0].isIntersecting) {
-                setPageNumber(prevPageNumber => prevPageNumber + 1);
-            }
-        }, {
-            threshold: 0,
-            root:null,
-          });
-        if(card) observer.current.observe(card);
-    }, [fetchStatus])
+        createInfiniteScroll(card, observer.current, fetchStatus);
+    }, [fetchStatus, createInfiniteScroll]);
 
 
     useEffect(() => {
@@ -36,6 +29,13 @@ const Movies = ({ viewTrailer, closeCard }) => {
             pageNumber,
         }));
     }, [dispatch, pageNumber])
+
+    useEffect(() => {
+        if(converge) {
+            setPageNumber(prevPageNumber => prevPageNumber + 1);
+            setConverge(false);
+        }
+    },[converge, setConverge])
 
 
     return (
@@ -47,7 +47,14 @@ const Movies = ({ viewTrailer, closeCard }) => {
                     </div>
                 ) : null
             }
-            {allMovies.map((movie, index) => {
+            {
+                fetchStatus === 'error' ? (
+                    <div style={{padding: "30px"}}>
+                        <h6>Error Loading Movies</h6>
+                    </div>
+                ) : null
+            }
+            { fetchStatus === 'success' ? allMovies.map((movie, index) => {
                 if(allMovies.length === index + 1) {
                     return (
                         <Movie 
@@ -65,11 +72,12 @@ const Movies = ({ viewTrailer, closeCard }) => {
                         key={movie.id}
                         viewTrailer={viewTrailer}
                         closeCard={closeCard}
+                        reference={null}
                     />
                 )
-            })}
+            }) : null }
         </div>
     )
 }
 
-export default Movies
+export default Movies;

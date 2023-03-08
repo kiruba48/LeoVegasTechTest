@@ -1,28 +1,21 @@
-import { useCallback, useEffect, useState, useRef } from 'react'
-import { Routes, Route, createSearchParams, useSearchParams, useNavigate } from "react-router-dom"
-import { useDispatch, useSelector } from 'react-redux'
-import 'reactjs-popup/dist/index.css'
-import { fetchMovies } from './data/moviesSlice'
-import { ENDPOINT_SEARCH, ENDPOINT_DISCOVER, ENDPOINT, API_KEY } from './constants'
-import Header from './components/Header'
-import Movies from './components/Movies'
-import Starred from './components/Starred'
-import WatchLater from './components/WatchLater'
+import { useState } from 'react';
+import { Routes, Route } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import 'reactjs-popup/dist/index.css';
+import { ENDPOINT, API_KEY } from './constants';
+import Header from './components/Header';
+import Movies from './components/Movies';
+import Starred from './components/Starred';
+import WatchLater from './components/WatchLater';
 import Modal from './components/Modal';
-import './app.scss'
+import './app.scss';
 
 
 const App = () => {
 
   const { fetchStatus } = useSelector((state) => state.movies);
-  // const { movies } = state  
-  const dispatch = useDispatch()
-  // const navigate = useNavigate()
-  // const [searchParams, setSearchParams] = useSearchParams()
-  // const searchQuery = searchParams.get('search')
   const [videoKey, setVideoKey] = useState()
   const [isOpen, setOpen] = useState(false)
-  // const [pageNumber, setPageNumber] = useState(1);
   
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
@@ -32,33 +25,6 @@ const App = () => {
   }
 
   const closeCard = () => {}
-
-  // const getSearchResults = (query) => {
-  //   if (query !== '') {
-  //     // dispatch(fetchMovies(`${ENDPOINT_SEARCH}&query=`+query))
-  //     dispatch(fetchMovies(ENDPOINT_SEARCH, query));
-      
-  //     setSearchParams(createSearchParams({ search: query }))
-  //   } else {
-  //     dispatch(fetchMovies(ENDPOINT_DISCOVER))
-  //     setSearchParams()
-  //   }
-  // }
-
-  // const searchMovies = (query) => {
-  //   navigate('/')
-  //   getSearchResults(query)
-  // }
-
-  // const getMovies = useCallback(() => {
-  //   if (searchQuery) {
-  //       // dispatch(fetchMovies(`${ENDPOINT_SEARCH}&query=`+searchQuery))
-  //       dispatch(fetchMovies(ENDPOINT_SEARCH, searchQuery));
-  //   } else {
-  //       dispatch(fetchMovies(ENDPOINT_DISCOVER, pageNumber))
-  //   }
-  // }, [searchQuery, pageNumber, dispatch])
-
 
   const getMovie = async (id) => {
     const URL = `${ENDPOINT}/movie/${id}?api_key=${API_KEY}&append_to_response=videos`
@@ -72,7 +38,7 @@ const App = () => {
 
   const getTrailer = (videoData) => {
     if (videoData.videos && videoData.videos.results.length) {
-      const trailer = videoData.videos.results.find(vid => vid.type === 'Trailer')
+      const trailer = videoData.videos.results.find(vid => vid.type === 'Trailer');
       setVideoKey(trailer ? trailer.key : videoData.videos.results[0].key);
       openModal();
     }
@@ -82,10 +48,6 @@ const App = () => {
     const movieToPlay = await getMovie(movie.id);
     await getTrailer(movieToPlay);
   }
-
-  // useEffect(() => {
-  //   // getMovies()
-  // }, [getMovies])
 
 
   return (
@@ -114,4 +76,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

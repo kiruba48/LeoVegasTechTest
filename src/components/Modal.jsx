@@ -17,7 +17,7 @@ const Modal = ({show, videoKey, closeModal, closeVideo, status}) => {
                     {
                         status === 'loading' ? (
                             <div style={{padding: "30px"}}>
-                                <h6>no trailer available. Try another movie</h6>
+                                <h6>Loading...</h6>
                             </div>
                         ) : null
                     }

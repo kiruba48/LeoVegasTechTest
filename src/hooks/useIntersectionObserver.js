@@ -7,11 +7,9 @@ export const useIntersectionObserver = () => {
     useEffect(() => {}, [converge]);
 
     function executeJob(entries){
-      entries.forEach((entry) => {
-        if(entry.isIntersecting){
-          setConverge(true);
-        }
-      })
+        if(entries[0].isIntersecting) {
+        setConverge(true);
+      }
     }
 
     function createScrollObserver() {
@@ -19,13 +17,18 @@ export const useIntersectionObserver = () => {
         threshold: 0,
         root:null,
       }
-
       return new IntersectionObserver(executeJob, options);
     }
 
-    
+    function createInfiniteScroll(card, ref, status){
+      if(status === 'loading') return;
+      if(ref) ref.disconnect();
+      ref = createScrollObserver()
+      if(card) ref.observe(card);
+    }
+
     return {
-      createScrollObserver,
+      createInfiniteScroll,
       converge,
       setConverge,
     };

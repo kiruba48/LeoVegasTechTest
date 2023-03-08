@@ -1,16 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// export const fetchMovies = createAsyncThunk('fetch-movies', async (apiUrl) => {
-//     try {
-//         const response = await fetch(apiUrl)
-//         return response.json()
-//     } catch (error) {
-//         console.log(error);
-//     }
-//     const response = await fetch(apiUrl)
-//     return response.json()
-// })
 
 export const fetchMovies = createAsyncThunk('fetch-movies', async ({apiUrl, pageNumber}) => {
     try {
@@ -35,8 +25,6 @@ const moviesSlice = createSlice({
             const tempMovies = [ ...state.movies, ...action.payload.results].filter((value, index, self) => {
                 return index === self.findIndex(item => item.id === value.id);
             })
-            // state.movies = action.payload.results;
-            // state.movies = [...action.payload.results, ...state.movies]
             state.movies = tempMovies;
             state.fetchStatus = 'success'
         }).addCase(fetchMovies.pending, (state) => {
